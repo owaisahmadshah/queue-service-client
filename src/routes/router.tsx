@@ -9,6 +9,7 @@ import { ResetPasswordPage } from "@/pages/auth/ResetPasswordPage"
 
 import { DashboardLayout } from "@/pages/dashboard/DashboardLayout"
 import { OverviewPage } from "@/pages/dashboard/OverviewPage"
+import { JobsPage } from "@/pages/dashboard/JobsPage"
 
 export const router = createBrowserRouter([
   {
@@ -38,27 +39,30 @@ export const router = createBrowserRouter([
         element: <DashboardLayout />,
         children: [
           { index: true, element: <OverviewPage /> },
-          {
-            path: "jobs",
-            element: (
-              <div className="p-4">Jobs Workspace Placeholder (Chunk 4)</div>
-            ),
-          },
+          { path: "jobs", element: <JobsPage /> },
           {
             path: "dlq",
             element: (
-              <div className="p-4">Dead Letter Queue Placeholder (Chunk 5)</div>
+              <div className="p-4 font-mono">
+                Dead Letter Queue Placeholder (Chunk 5)
+              </div>
             ),
           },
           {
             path: "api-keys",
             element: (
-              <div className="p-4">API Keys Manager Placeholder (Chunk 6)</div>
+              <div className="p-4 font-mono">
+                API Keys Manager Placeholder (Chunk 6)
+              </div>
             ),
           },
           {
             path: "settings",
-            element: <div className="p-4">Settings Placeholder (Chunk 6)</div>,
+            element: (
+              <div className="p-4 font-mono">
+                Settings Placeholder (Chunk 6)
+              </div>
+            ),
           },
         ],
       },

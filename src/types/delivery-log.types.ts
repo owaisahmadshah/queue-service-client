@@ -14,3 +14,9 @@ export interface DeliveryLogCursor {
   attempt: number
   id: string
 }
+
+export interface PaginatedDeliveryLogs {
+  data: DeliveryLog[]
+  next_cursor: DeliveryLog | null
+  has_more: boolean
+}
