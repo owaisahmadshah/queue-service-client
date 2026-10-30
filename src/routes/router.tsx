@@ -10,6 +10,9 @@ import { ResetPasswordPage } from "@/pages/auth/ResetPasswordPage"
 import { DashboardLayout } from "@/pages/dashboard/DashboardLayout"
 import { OverviewPage } from "@/pages/dashboard/OverviewPage"
 import { JobsPage } from "@/pages/dashboard/JobsPage"
+import { DlqPage } from "@/pages/dashboard/DlqPage"
+import { ApiKeysPage } from "@/pages/dashboard/ApiKeysPage"
+import { SettingsPage } from "@/pages/dashboard/SettingsPage"
 
 export const router = createBrowserRouter([
   {
@@ -40,30 +43,9 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: <OverviewPage /> },
           { path: "jobs", element: <JobsPage /> },
-          {
-            path: "dlq",
-            element: (
-              <div className="p-4 font-mono">
-                Dead Letter Queue Placeholder (Chunk 5)
-              </div>
-            ),
-          },
-          {
-            path: "api-keys",
-            element: (
-              <div className="p-4 font-mono">
-                API Keys Manager Placeholder (Chunk 6)
-              </div>
-            ),
-          },
-          {
-            path: "settings",
-            element: (
-              <div className="p-4 font-mono">
-                Settings Placeholder (Chunk 6)
-              </div>
-            ),
-          },
+          { path: "dlq", element: <DlqPage /> },
+          { path: "api-keys", element: <ApiKeysPage /> },
+          { path: "settings", element: <SettingsPage /> },
         ],
       },
     ],
