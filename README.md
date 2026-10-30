@@ -1,21 +1,88 @@
-# React + TypeScript + Vite + shadcn/ui
+# Queue Service Console
 
-This is a template for a new Vite project with React, TypeScript, and shadcn/ui.
+An administrative dashboard and developer console designed to control, monitor, and debug the **Queue Service** background job engine. Built for real-time visibility into BullMQ queues, worker processing states, delivery logs, dead-letter queues (DLQ), and API key management.
 
-## Adding components
+---
 
-To add components to your app, run the following command:
+## Features
 
-```bash
-npx shadcn@latest add button
+- **System Overview & Metrics:** Real-time polling ($5\text{s}$) for job stats, backlog state, live email queue metrics, and channel success/failure rates visualized with Recharts.
+- **Jobs Queue Workspace:** Cursor-paginated notification jobs table with status filters (`pending`, `processing`, `completed`, `failed`, `dead`), execution inspection drawer, and delivery attempt timelines.
+- **Interactive Dispatcher:** Test job dispatcher modal to enqueue email and webhook notifications using API keys directly from the browser.
+- **Dead Letter Queue (DLQ) Inspector:** Analyze exhausted retry jobs, inspect error stack traces side-by-side with original JSON payloads, and trigger one-click job replays or record purges.
+- **API Key Management:** Generate `qs_...` API keys with one-time copy modals and revoke active tokens.
+- **User Authentication:** Complete auth flow featuring account registration, email OTP verification, JWT session management via HttpOnly cookies, password resets, and account deletion.
+- **Developer-Centric UI:** Styled with `shadcn/ui` using the `Lyra` Phosphor preset with `JetBrains Mono` typography for a terminal-like developer console experience.
+
+---
+
+## Tech Stack
+
+- **Framework:** React 19 + Vite
+- **Language:** TypeScript
+- **Styling & UI:** Tailwind CSS v4 + Shadcn UI (Base UI + Lyra Phosphor / JetBrains Mono)
+- **Data Fetching & State:** TanStack React Query v5 + Axios (with credentials)
+- **Routing:** React Router v7
+- **Charts:** Recharts
+- **Icons & Dates:** Lucide React & date-fns
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- **Node.js:** v18.0.0 or higher
+- **pnpm:** v8.0.0 or higher
+- **Backend API:** Running [Queue Service backend](https://github.com/owaisahmadshah/queue-service) on `http://localhost:3030`
+
+### Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone --depth 1 [https://github.com/owaisahmadshah/queue-service-client.git](https://github.com/owaisahmadshah/queue-service-client.git)
+   cd queue-service-client
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   pnpm install
+   ```
+
+3. **Set up Environment Variables:**
+
+   Create a .env file in the root directory:
+
+   ```code
+   VITE_API_BASE_URL=http://localhost:3030/api/v1
+   ```
+
+4. **Start the development server:**
+
+```code
+pnpm dev
 ```
 
-This will place the ui components in the `src/components` directory.
+## Folder Structure
 
-## Using components
-
-To use the components in your app, import them as follows:
-
-```tsx
-import { Button } from "@/components/ui/button"
+```
+queue-service-client/
+├── src/
+│   ├── components/
+│   │   ├── modals/          # Dispatch, API key creation, and DLQ drawers
+│   │   ├── shared/          # AppSidebar, Navbar, PageHeader, StatusBadge, CodeBlock
+│   │   └── ui/              # Shadcn UI primitive components
+│   ├── config/              # Environment vars & polling constants
+│   ├── contexts/            # AuthContext provider
+│   ├── lib/                 # Axios client, query client, and utility helpers
+│   ├── pages/
+│   │   ├── auth/            # Sign in, Sign up, OTP verification, Reset password
+│   │   └── dashboard/       # Overview, Jobs, DLQ, API Keys, Settings
+│   ├── routes/              # Protected & Guest route guards and router registry
+│   ├── services/            # API service layers
+│   └── types/               # TypeScript domain interfaces
+├── package.json
+└── vite.config.ts
 ```

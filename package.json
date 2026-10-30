@@ -1,8 +1,11 @@
 {
   "name": "queue-service-client",
   "private": true,
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Frontend web console for Queue Service — featuring real-time BullMQ/Redis queue metrics, job tracking, DLQ inspection, and API key management.",
   "type": "module",
+  "author": "Owais Ahmad Shah",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
