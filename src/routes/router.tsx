@@ -7,6 +7,9 @@ import { VerifyOtpPage } from "@/pages/auth/VerifyOtpPage"
 import { ForgotPasswordPage } from "@/pages/auth/ForgotPasswordPage"
 import { ResetPasswordPage } from "@/pages/auth/ResetPasswordPage"
 
+import { DashboardLayout } from "@/pages/dashboard/DashboardLayout"
+import { OverviewPage } from "@/pages/dashboard/OverviewPage"
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -32,13 +35,32 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "dashboard",
-        element: (
-          <div className="p-8 font-mono">
-            <h1 className="text-xl font-bold">
-              Dashboard Placeholder (Chunk 3)
-            </h1>
-          </div>
-        ),
+        element: <DashboardLayout />,
+        children: [
+          { index: true, element: <OverviewPage /> },
+          {
+            path: "jobs",
+            element: (
+              <div className="p-4">Jobs Workspace Placeholder (Chunk 4)</div>
+            ),
+          },
+          {
+            path: "dlq",
+            element: (
+              <div className="p-4">Dead Letter Queue Placeholder (Chunk 5)</div>
+            ),
+          },
+          {
+            path: "api-keys",
+            element: (
+              <div className="p-4">API Keys Manager Placeholder (Chunk 6)</div>
+            ),
+          },
+          {
+            path: "settings",
+            element: <div className="p-4">Settings Placeholder (Chunk 6)</div>,
+          },
+        ],
       },
     ],
   },
