@@ -21,8 +21,11 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts"
+import { useAuth } from "@/contexts/AuthContext"
 
 export function OverviewPage() {
+  const { isAuthenticated } = useAuth()
+
   const {
     data: stats,
     isLoading,
@@ -32,6 +35,7 @@ export function OverviewPage() {
     queryKey: QUERY_KEYS.JOB_STATS,
     queryFn: jobService.getStats,
     refetchInterval: POLLING_INTERVALS.STATS,
+    enabled: isAuthenticated,
   })
 
   const backlogData = [

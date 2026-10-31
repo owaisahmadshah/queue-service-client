@@ -35,7 +35,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   useEffect(() => {
-    fetchUser()
+    let isMounted = true
+
+    authService
+      .getCurrentUser()
+      .then((currentUser) => {
+        if (isMounted) setUser(currentUser)
+      })
+      .catch(() => {
+        if (isMounted) setUser(null)
+      })
+      .finally(() => {
+        if (isMounted) setIsLoading(false)
+      })
+
+    return () => {
+      isMounted = false
+    }
   }, [])
 
   const signIn = async (credentials: SignInRequest) => {
